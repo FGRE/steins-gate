@@ -1,0 +1,10 @@
+#ifndef VERSION_HPP
+#define VERSION_HPP
+
+#define VERSION       "@VERSION@"
+#define VERSION_MAJOR "@VERSION_MAJOR@"
+#define VERSION_MINOR "@VERSION_MINOR@"
+#define VERSION_PATCH "@VERSION_PATCH@"
+#define VERSION_GIT   "@VERSION_GIT@"
+
+#endif
