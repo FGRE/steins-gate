@@ -18,9 +18,9 @@
 #include "SGWindow.hpp"
 #include "SGInterpreter.hpp"
 
-SGWindow::SGWindow(ExePublisher Version) : Window("FGRE: Steins;Gate", 1024, 768)
+SGWindow::SGWindow(ExePublisher Version) : Window("FGRE: Steins;Gate", 1024, 576)
 {
-    pInterpreter = new SGInterpreter(Version);
+    pInterpreter = new SGInterpreter(this, Version);
     pInterpreter->ExecuteLocalNSS("test.nss");
 }
 

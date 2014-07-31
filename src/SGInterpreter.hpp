@@ -26,10 +26,11 @@ namespace std
     class thread;
 };
 
+class SGWindow;
 class SGInterpreter : public NSBInterpreter
 {
 public:
-    SGInterpreter(ExePublisher Version);
+    SGInterpreter(SGWindow* pWindow, ExePublisher Version);
     ~SGInterpreter();
 };
 

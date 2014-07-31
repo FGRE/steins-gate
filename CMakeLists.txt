@@ -22,7 +22,7 @@ message(STATUS "Configuring steins-gate version " ${VERSION})
 project (steins-gate CXX)
 
 set(CMAKE_BUILD_TYPE Debug)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O2 -lGL")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O2 -lGL -ljpeg")
 
 # include version number in header
 configure_file(${PROJECT_SOURCE_DIR}/src/version.hpp.in
@@ -33,6 +33,7 @@ find_package(NPENGINE REQUIRED)
 include(FindPkgConfig)
 
 PKG_SEARCH_MODULE(SDL2 REQUIRED sdl2)
+PKG_SEARCH_MODULE(libpng REQUIRED libpng)
 
 # add libraries
 include_directories(
@@ -49,9 +50,11 @@ add_executable(steins-gate
     src/SGExe.cpp
     src/SGWindow.cpp
     src/SGInterpreter.cpp
+    src/SGResourceMgr.cpp
 )
 target_link_libraries(steins-gate
     ${SDL2_LIBRARIES}
+    ${libpng_LIBRARIES}
     npengine npa
 )
 

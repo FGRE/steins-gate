@@ -15,35 +15,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * */
-#include "SGInterpreter.hpp"
-#include "SGResourceMgr.hpp"
-#include "SGWindow.hpp"
-#include "npafile.hpp"
+#ifndef SG_RESOURCE_MGR_HPP
+#define SG_RESOURCE_MGR_HPP
 
-SGInterpreter::SGInterpreter(SGWindow* pWindow, ExePublisher Version) : NSBInterpreter(pWindow)
+#include "ResourceMgr.hpp"
+
+class SGResourceMgr : public ResourceMgr
 {
-    // How many NULL bytes terminate string in exe
-    uint8_t CharWidth;
+public:
+    SGResourceMgr();
 
-    switch (Version)
-    {
-        case EXE_FUWANOVEL:
-        case EXE_NITROPLUS:
-            NpaFile::SetLocale("ja_JP.CP932");
-            CharWidth = 1;
-            break;
-        case EXE_JAST:
-            NpaFile::SetLocale("en_US.UTF-16");
-            CharWidth = 2;
-            break;
-    }
+protected:
+    ScriptFile* ReadScriptFile(const std::string& Path);
+};
 
-    sResourceMgr = new SGResourceMgr;
-    sExe = new SGExe("STEINSGATE.exe", Version, CharWidth);
-}
-
-SGInterpreter::~SGInterpreter()
-{
-    delete sExe;
-    delete sResourceMgr;
-}
+#endif
