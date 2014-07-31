@@ -21,6 +21,7 @@
 SGWindow::SGWindow(ExePublisher Version) : Window("FGRE: Steins;Gate", 1024, 768)
 {
     pInterpreter = new SGInterpreter(Version);
+    pInterpreter->ExecuteLocalNSS("test.nss");
 }
 
 SGWindow::~SGWindow()
