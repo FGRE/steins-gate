@@ -28,6 +28,8 @@ public:
     SGWindow(ExePublisher Version);
     ~SGWindow();
 
+    virtual void HandleEvent(SDL_Event Event);
+
 protected:
     void RunInterpreter();
 

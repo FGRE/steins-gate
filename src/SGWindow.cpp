@@ -33,3 +33,8 @@ void SGWindow::RunInterpreter()
 {
     pInterpreter->Run();
 }
+
+void SGWindow::HandleEvent(SDL_Event Event)
+{
+    pInterpreter->HandleEvent(Event);
+}
