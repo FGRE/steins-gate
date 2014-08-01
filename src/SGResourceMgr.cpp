@@ -39,14 +39,12 @@ SGResourceMgr::SGResourceMgr()
 ScriptFile* SGResourceMgr::ReadScriptFile(const std::string& Path)
 {
     ScriptFile* pScript = nullptr;
-    std::string MapPath(Path, 0, Path.size() - 3);
-    MapPath += "map";
 
     // Check Archives
     uint32_t NsbSize;
-    char* NsbData = Read(Path, NsbSize);
+    char* NsbData = Read(Path.substr(0, Path.size() - 1) + "b", NsbSize);
     uint32_t MapSize;
-    char* MapData = Read(MapPath, MapSize);
+    char* MapData = Read(Path.substr(0, Path.size() - 3) + "map", MapSize);
 
     // Both files found
     if (NsbData && MapData)
