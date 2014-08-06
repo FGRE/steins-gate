@@ -30,6 +30,7 @@ configure_file(${PROJECT_SOURCE_DIR}/src/version.hpp.in
 
 find_package(NPA REQUIRED)
 find_package(NPENGINE REQUIRED)
+find_package(GLEW REQUIRED)
 include(FindPkgConfig)
 
 PKG_SEARCH_MODULE(SDL2 REQUIRED sdl2)
@@ -43,6 +44,7 @@ include_directories(
 link_directories(
     ${NPENGINE_LIBRARY_DIR}
     ${NPA_LIBRARY_DIR}
+    ${GLEW_INCLUDE_DIR}
 )
 
 add_executable(steins-gate
@@ -55,6 +57,7 @@ add_executable(steins-gate
 target_link_libraries(steins-gate
     ${SDL2_LIBRARIES}
     ${libpng_LIBRARIES}
+    ${GLEW_LIBRARY}
     npengine npa
 )
 
