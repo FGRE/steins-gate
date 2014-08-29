@@ -31,6 +31,7 @@ configure_file(${PROJECT_SOURCE_DIR}/src/version.hpp.in
 find_package(NPA REQUIRED)
 find_package(NPENGINE REQUIRED)
 find_package(GLEW REQUIRED)
+find_package(GStreamer REQUIRED)
 include(FindPkgConfig)
 
 PKG_SEARCH_MODULE(SDL2 REQUIRED sdl2)
@@ -58,6 +59,7 @@ target_link_libraries(steins-gate
     ${SDL2_LIBRARIES}
     ${libpng_LIBRARIES}
     ${GLEW_LIBRARY}
+    ${GSTREAMER_LIBRARIES} ${GSTREAMER_APP_LIBRARIES} ${GSTREAMER_VIDEO_LIBRARIES}
     npengine npa
 )
 

@@ -4,6 +4,13 @@ chapter main
     $b = $a - 1;
     $b -= 1;
     $a += 1;
+    CreateMovie("Movie", 11100, 0, 0, "false", "false", "dx/timeleapbg.ngs", "true");
+    Request("Movie", "Play");
+    Wait(DurationTime("Movie"));
+    Delete("Movie");
+    CreateSound("TestSE", "SE", "sound/se/cosupure.ogg");
+    Request("TestSE", "Play");
+    Wait(DurationTime("TestSE"));
     StArray();
     CreateTexture("TEST0", 500, 0, 0, "cg/ev/EV_C02C.jpg");
     ApplyBlur("TEST0", "SEMIHEAVY");
