@@ -4,6 +4,10 @@ chapter main
     $b = $a - 1;
     $b -= 1;
     $a += 1;
+    CreateTexture("DERP", 500, "center", "middle", "cg/ibg/ibg003.png");
+    SetAlias("DERP", "DERP");
+    Wait(1000);
+    Delete("@DERP");
     CreateMovie("Movie", 11100, 0, 0, "false", "false", "dx/timeleapbg.ngs", "true");
     Request("Movie", "Play");
     Wait(DurationTime("Movie"));

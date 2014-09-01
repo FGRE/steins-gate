@@ -21,11 +21,6 @@
 #include "NSBInterpreter.hpp"
 #include "SGExe.hpp"
 
-namespace std
-{
-    class thread;
-};
-
 class SGWindow;
 class SGInterpreter : public NSBInterpreter
 {
