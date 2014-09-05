@@ -21,7 +21,7 @@
 SGWindow::SGWindow(ExePublisher Version) : Window("FGRE: Steins;Gate", 1024, 576)
 {
     pInterpreter = new SGInterpreter(this, Version);
-    pInterpreter->ExecuteLocalNSS("test.nss");
+    pInterpreter->ExecuteLocalScript("test.nss");
 }
 
 SGWindow::~SGWindow()
@@ -36,5 +36,6 @@ void SGWindow::RunInterpreter()
 
 void SGWindow::HandleEvent(SDL_Event Event)
 {
-    pInterpreter->HandleEvent(Event);
+    // TODO: Maybe remove this and handle phone in SGInterpreter::HandleEvent
+    Window::HandleEvent(Event);
 }

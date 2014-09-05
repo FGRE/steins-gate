@@ -32,9 +32,6 @@ public:
 
 protected:
     void RunInterpreter();
-
-private:
-    SGInterpreter* pInterpreter;
 };
 
 #endif
