@@ -28,14 +28,3 @@ SGWindow::~SGWindow()
 {
     delete pInterpreter;
 }
-
-void SGWindow::RunInterpreter()
-{
-    pInterpreter->Run(100);
-}
-
-void SGWindow::HandleEvent(SDL_Event Event)
-{
-    // TODO: Maybe remove this and handle phone in SGInterpreter::HandleEvent
-    Window::HandleEvent(Event);
-}
