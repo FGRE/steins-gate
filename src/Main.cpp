@@ -29,6 +29,10 @@ int PrintArguments(char** argv)
 
 ExePublisher ParseExeVersion(char** argv)
 {
+    // Default to Nitroplus
+    if (!argv[1])
+        return EXE_NITROPLUS;
+
     string VersionString = argv[1];
     if (VersionString == "Nitroplus")
         return EXE_NITROPLUS;
@@ -42,7 +46,7 @@ ExePublisher ParseExeVersion(char** argv)
 
 int main(int argc, char** argv)
 {
-    if (argc != 2)
+    if (argc > 2)
         return PrintArguments(argv);
 
     ExePublisher Version = ParseExeVersion(argv);
