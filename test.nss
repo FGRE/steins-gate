@@ -6,13 +6,16 @@ chapter main
     $a += 1;
     CreateName("CHERP");
     CreateTexture("CHERP/DERP", 500, "center", "middle", "cg/ibg/ibg003.png");
-    Move("CHERP/DERP", 0, 100, 100, "Axl2", "false");
+    Fade("CHERP/DERP", 0, 0, "derp", "true");
+    Fade("CHERP/DERP", 3000, 1000, "derp", "false");
+    Move("CHERP/DERP", 3000, 100, 100, "Axl2", "true");
+    Fade("CHERP/DERP", 3000, 0, "derp", "true");
     SetAlias("CHERP/DERP", "DERP");
     Wait(1000);
     Delete("@DERP");
     CreateMovie("Movie", 11100, 0, 0, "false", "false", "dx/timeleapbg.ngs", "true");
     Request("Movie", "Play");
-    Wait(DurationTime("Movie"));
+    WaitKey(DurationTime("Movie"));
     Delete("Movie");
     CreateSound("TestSE", "SE", "sound/se/cosupure.ogg");
     Request("TestSE", "Play");
