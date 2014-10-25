@@ -38,7 +38,8 @@ chapter main
     Move("TEST", 1330, 0, 0, "Axl2", "false");
     Zoom("TEST", 1330, 1050, 1050, "Axl2", "true");
     CreateTexture("TEST3", 9000, 0, 0, "cg/bg/BG_BLACK.jpg");
-    DrawTransition("TEST3", 1000, 0, 250, 0, "null", "cg/data/mask17.png", "true");
+    DrawTransition("TEST3", 4000, 0, 250, 250, "null", "cg/data/mask17.png", "true");
+    DrawTransition("TEST3", 4000, 250, 0, 250, "null", "cg/data/mask17.png", "true");
     WaitKey(3000);
     func("herp", "derp");
 }
