@@ -2,8 +2,21 @@ chapter main
 {
     $a = 3;
     $b = $a - 1;
-    $b -= 1;
-    $a += 1;
+    $b--;
+    $a++;
+    CreateWindow("TODO", 20001, 0, 0, 1024, 576, "false");
+<PRE @box00>[text00010]
+<voice name="？？？" class="VID_MAY" src="voice/MAY_0000" mode="on">
+「ねぇねぇ。なにブツブツ言ってるのー？」
+
+右耳に当てているケータイ電話。通話口からはなにも聞こえてこない。ノイズすらない。完全に無音。
+
+夏の強烈な日射しを受けて。
+
+ぽたりと、俺の<RUBY text="あごさき">顎先</RUBY>から汗が<RUBY text="ひとしずく">一滴</RUBY>落ち、アスファルトに染みを作った。
+
+</PRE>
+    Move($SYSTEM_present_text, 0, 126, 387, null, false);
     CreateName("CHERP");
     CreateTexture("CHERP/DERP", 500, "center", "middle", "cg/ibg/ibg003.png");
     Fade("CHERP/DERP", 0, 0, "derp", "true");
