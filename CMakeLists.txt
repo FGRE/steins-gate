@@ -36,6 +36,7 @@ include(FindPkgConfig)
 
 PKG_SEARCH_MODULE(SDL2 REQUIRED sdl2)
 PKG_SEARCH_MODULE(libpng REQUIRED libpng)
+PKG_SEARCH_MODULE(PANGOCAIRO REQUIRED pangocairo)
 
 # add libraries
 include_directories(
@@ -43,6 +44,7 @@ include_directories(
     ${NPENGINE_INCLUDE_DIR}
 )
 link_directories(
+    ${PANGOCAIRO_LIBRARY_DIR}
     ${NPENGINE_LIBRARY_DIR}
     ${NPA_LIBRARY_DIR}
     ${GLEW_INCLUDE_DIR}
@@ -56,6 +58,7 @@ add_executable(steins-gate
     src/SGResourceMgr.cpp
 )
 target_link_libraries(steins-gate
+    ${PANGOCAIRO_LIBRARIES}
     ${SDL2_LIBRARIES}
     ${libpng_LIBRARIES}
     ${GLEW_LIBRARY}
