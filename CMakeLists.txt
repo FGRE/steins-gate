@@ -22,7 +22,7 @@ message(STATUS "Configuring steins-gate version " ${VERSION})
 project (steins-gate CXX)
 
 set(CMAKE_BUILD_TYPE Debug)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O2 -lGL -ljpeg")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O2 -ljpeg")
 
 # include version number in header
 configure_file(${PROJECT_SOURCE_DIR}/src/version.hpp.in
