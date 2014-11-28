@@ -55,6 +55,8 @@ chapter main
     DrawTransition("TEST3", 4000, 250, 0, 250, "null", "cg/data/mask17.png", "true");
     WaitKey(3000);
     func("herp", "derp");
+    Delete("*/*");
+    Delete("*");
 }
 
 function func($herp, $derp)
