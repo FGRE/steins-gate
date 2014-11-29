@@ -16,7 +16,8 @@ chapter main
 ぽたりと、俺の<RUBY text="あごさき">顎先</RUBY>から汗が<RUBY text="ひとしずく">一滴</RUBY>落ち、アスファルトに染みを作った。
 
 </PRE>
-    Move($SYSTEM_present_text, 0, 126, 387, null, false);
+    Move($SYSTEM_present_text, 0, 126, 387, "null", "false");
+    WaitText($SYSTEM_present_text, "null");
     CreateName("CHERP");
     CreateTexture("CHERP/DERP", 500, "center", "middle", "cg/ibg/ibg003.png");
     Fade("CHERP/DERP", 0, 0, "derp", "true");
