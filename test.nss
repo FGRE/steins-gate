@@ -4,6 +4,8 @@ chapter main
     $b = $a - 1;
     $b--;
     $a++;
+    SetShortcut("Q", "nss/0_boot.nss");
+    WaitKey();
     CreateWindow("TODO", 20001, 0, 0, 1024, 576, "false");
 <PRE @box00>[text00010]
 <voice name="？？？" class="VID_MAY" src="voice/MAY_0000" mode="on">
