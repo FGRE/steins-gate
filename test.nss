@@ -22,10 +22,10 @@ chapter main
     WaitText($SYSTEM_present_text, "null");
     CreateName("CHERP");
     CreateTexture("CHERP/DERP", 500, "center", "middle", "cg/ibg/ibg003.png");
-    Fade("CHERP/DERP", 0, 0, "derp", "true");
-    Fade("CHERP/DERP", 3000, 1000, "derp", "false");
+    Fade("CHERP/DERP", 0, 0, "null", "true");
+    Fade("CHERP/DERP", 3000, 1000, "null", "false");
     Move("CHERP/DERP", 3000, 100, 100, "Axl2", "true");
-    Fade("CHERP/DERP", 3000, 0, "derp", "true");
+    Fade("CHERP/DERP", 3000, 0, "null", "true");
     SetAlias("CHERP/DERP", "DERP");
     Wait(1000);
     Delete("@DERP");
@@ -42,10 +42,10 @@ chapter main
     WaitKey(3000);
     Delete("TEST0");
     CreateTexture("TEST2", 500, 0, 0, "cg/bg/tit001.jpg");
-    Fade("TEST2", 0, 0, "derp", "true");
-    Fade("TEST2", 1000, 1000, "derp", "true");
+    Fade("TEST2", 0, 0, "null", "true");
+    Fade("TEST2", 1000, 1000, "null", "true");
     WaitKey(2000);
-    Fade("TEST2", 1000, 0, "derp", "true");
+    Fade("TEST2", 1000, 0, "null", "true");
     CreateTexture("TEST", 600, 0, 0, "cg/ev/EV_Z01A.jpg");
     Move("TEST", 0, 210, -70, "null", "true");
     SetVertex("TEST", 306, 404);
