@@ -4,8 +4,10 @@ chapter main
     $b = $a - 1;
     $b--;
     $a++;
+    CreateColor("タイトルカラー", 150, 0, 0, 1024, 576, "#FFFF00");
     SetShortcut("Q", "nss/0_boot.nss");
     WaitKey();
+    Delete("タイトルカラー");
     CreateWindow("TODO", 20001, 0, 0, 1024, 576, "false");
 <PRE @box00>[text00010]
 <voice name="？？？" class="VID_MAY" src="voice/MAY_0000" mode="on">
