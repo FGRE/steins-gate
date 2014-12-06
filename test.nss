@@ -1,3 +1,5 @@
+#include "nss/function.nss"
+
 chapter main
 {
     $a = 3;
@@ -20,6 +22,7 @@ chapter main
 ぽたりと、俺の<RUBY text="あごさき">顎先</RUBY>から汗が<RUBY text="ひとしずく">一滴</RUBY>落ち、アスファルトに染みを作った。
 
 </PRE>
+    SetText();
     Move($SYSTEM_present_text, 0, 126, 387, "null", "false");
     WaitText($SYSTEM_present_text, "null");
     CreateName("CHERP");
