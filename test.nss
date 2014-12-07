@@ -30,10 +30,9 @@ chapter main
     Fade("CHERP/DERP", 0, 0, "null", "true");
     Fade("CHERP/DERP", 3000, 1000, "null", "false");
     Move("CHERP/DERP", 3000, 100, 100, "Axl2", "true");
-    Fade("CHERP/DERP", 3000, 0, "null", "true");
     SetAlias("CHERP/DERP", "DERP");
     Wait(1000);
-    Delete("@DERP");
+    Delete("@DER*");
     CreateMovie("Movie", 11100, 0, 0, "false", "false", "dx/timeleapbg.ngs", "true");
     Request("Movie", "Play");
     WaitKey(DurationTime("Movie"));
