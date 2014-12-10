@@ -2,6 +2,13 @@
 
 chapter main
 {
+    CreateSound("TestBGM", "BGM", "sound/bgm/bgm03");
+    SetLoopPoint("TestBGM", 11000, 15000);
+    Request("TestBGM", "Play");
+    Wait(1000);
+    Request("TestBGM", "Pause");
+    Wait(1000);
+    Request("TestBGM", "Resume");
     $a = 3;
     $b = $a - 1;
     $b--;
@@ -37,9 +44,6 @@ chapter main
     Request("Movie", "Play");
     WaitKey(DurationTime("Movie"));
     Delete("Movie");
-    CreateSound("TestSE", "SE", "sound/se/cosupure.ogg");
-    Request("TestSE", "Play");
-    Wait(DurationTime("TestSE"));
     StArray();
     CreateTexture("TEST0", 500, 0, 0, "cg/ev/EV_C02C.jpg");
     ApplyBlur("TEST0", "SEMIHEAVY");
