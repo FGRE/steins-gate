@@ -33,13 +33,15 @@ chapter main
     Move($SYSTEM_present_text, 0, 126, 387, "null", "false");
     WaitText($SYSTEM_present_text, "null");
     CreateName("CHERP");
-    CreateTexture("CHERP/DERP", 500, "center", "middle", "cg/ibg/ibg003.png");
+    LoadImage("POOP", "cg/ibg/ibg003.png");
+    CreateClipTexture("CHERP/DERP", 500, "center", "middle", 412, 188, 100, 100, POOP);
     Fade("CHERP/DERP", 0, 0, "null", "true");
     Fade("CHERP/DERP", 3000, 1000, "null", "false");
     Move("CHERP/DERP", 3000, 100, 100, "Axl2", "true");
     SetAlias("CHERP/DERP", "DERP");
     Wait(1000);
     Delete("@DER*");
+    Delete(POOP);
     CreateMovie("Movie", 11100, 0, 0, "false", "false", "dx/timeleapbg.ngs", "true");
     Request("Movie", "Play");
     WaitKey(DurationTime("Movie"));
