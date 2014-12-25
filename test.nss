@@ -3,6 +3,7 @@
 chapter main
 {
     CreateSound("TestBGM", "BGM", "sound/bgm/bgm03");
+    CreateText("TESTTEXT", 10000, "center", "middle", 0, 0, "メリークリスマス");
     SetLoopPoint("TestBGM", 11000, 15000);
     Request("TestBGM", "Play");
     Wait(1000);
@@ -48,7 +49,7 @@ chapter main
     Delete("Movie");
     StArray();
     CreateTexture("TEST0", 500, 0, 0, "cg/ev/EV_C02C.jpg");
-    ApplyBlur("TEST0", "SEMIHEAVY");
+    SetShade("TEST0", "SEMIHEAVY");
     WaitKey(3000);
     Delete("TEST0");
     CreateTexture("TEST2", 500, 0, 0, "cg/bg/tit001.jpg");
@@ -67,6 +68,7 @@ chapter main
     DrawTransition("TEST3", 4000, 0, 250, 250, "null", "cg/data/mask17.png", "true");
     DrawTransition("TEST3", 4000, 250, 0, 250, "null", "cg/data/mask17.png", "true");
     WaitKey(3000);
+    Delete("TEST3");
     func("herp", "derp");
     Delete("*/*");
     Delete("*");
