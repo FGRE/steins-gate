@@ -2,6 +2,7 @@
 
 chapter main
 {
+    #GameLoading = "SteinsGate";
     CreateSound("TestBGM", "BGM", "sound/bgm/bgm03");
     CreateText("TESTTEXT", 10000, "center", "middle", 0, 0, "メリークリスマス");
     SetLoopPoint("TestBGM", 11000, 15000);

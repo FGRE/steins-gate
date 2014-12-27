@@ -41,8 +41,8 @@ SGInterpreter::SGInterpreter(SGWindow* pWindow, ExePublisher Version) : NSBInter
     sResourceMgr = new SGResourceMgr;
     sExe = new SGExe("STEINSGATE.exe", Version, CharWidth);
 
-    // Hack for test.nss
-    SetVar("#GameLoading", Variable::MakeString("SteinsGate"));
+    // Hack
+    SetVar("#SYSTEM_save_path", Variable::MakeString("."));
 }
 
 SGInterpreter::~SGInterpreter()
