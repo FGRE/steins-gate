@@ -32,6 +32,7 @@ find_package(NPA REQUIRED)
 find_package(NPENGINE REQUIRED)
 find_package(GLEW REQUIRED)
 find_package(GStreamer REQUIRED)
+find_package(Boost REQUIRED COMPONENTS program_options)
 include(FindPkgConfig)
 
 PKG_SEARCH_MODULE(SDL2 REQUIRED sdl2)
@@ -58,6 +59,7 @@ add_executable(steins-gate
     src/SGResourceMgr.cpp
 )
 target_link_libraries(steins-gate
+    ${Boost_LIBRARIES}
     ${PANGOCAIRO_LIBRARIES}
     ${SDL2_LIBRARIES}
     ${libpng_LIBRARIES}

@@ -25,8 +25,9 @@ class SGInterpreter;
 class SGWindow : public Window
 {
 public:
-    SGWindow(ExePublisher Version);
-    ~SGWindow();
+    SGWindow();
+
+    void SetInterpreter(SGInterpreter* pInterpreter);
 };
 
 #endif

@@ -17,42 +17,46 @@
  * */
 #include "SGWindow.hpp"
 #include "SGExe.hpp"
+#include "SGInterpreter.hpp"
 #include <iostream>
-#include <memory>
+#include <boost/program_options.hpp>
 using namespace std;
-
-int PrintArguments(char** argv)
-{
-    cout << "usage: " << argv[0] << " <Nitroplus | JAST | Fuwanovel>" << endl;
-    return 1;
-}
-
-ExePublisher ParseExeVersion(char** argv)
-{
-    // Default to Nitroplus
-    if (!argv[1])
-        return EXE_NITROPLUS;
-
-    string VersionString = argv[1];
-    if (VersionString == "Nitroplus")
-        return EXE_NITROPLUS;
-    else if (VersionString == "JAST")
-        return EXE_JAST;
-    else if (VersionString == "Fuwanovel")
-        return EXE_FUWANOVEL;
-    else
-        return EXE_INVALID;
-}
+using namespace boost::program_options;
 
 int main(int argc, char** argv)
 {
-    if (argc > 2)
-        return PrintArguments(argv);
+    ExePublisher Version;
+    bool Debug;
+    options_description desc("Options");
+    desc.add_options()
+        ("help", "Print this message")
+        ("exe", value<int>((int*)&Version)->default_value(EXE_NITROPLUS), "Source of STEINSGATE.exe\n    0 - Nitroplus\n    1 - JAST\n    2 - Fuwanovel")
+        ("script", value<string>(), "Path to nss script to execute")
+        ("debug", value<bool>(&Debug)->default_value(false), "Start script debugger")
+    ;
 
-    ExePublisher Version = ParseExeVersion(argv);
-    if (Version == EXE_INVALID)
-        return PrintArguments(argv);
+    variables_map vm;
+    store(parse_command_line(argc, argv, desc), vm);
+    notify(vm);
 
-    unique_ptr<SGWindow> pWindow(new SGWindow(Version));
+    if (vm.count("help"))
+    {
+        cout << desc << "\n";
+        return 1;
+    }
+
+    SGWindow* pWindow = new SGWindow;
+    SGInterpreter* pInterpreter = new SGInterpreter(pWindow, Version);
+
+    if (vm.count("script"))
+        pInterpreter->ExecuteLocalScript(vm["script"].as<string>());
+    else
+        pInterpreter->ExecuteScript("nss/0_boot.nss");
+
+    if (Debug)
+        pInterpreter->StartDebugger();
+
+    pWindow->SetInterpreter(pInterpreter);
     pWindow->Run();
+    delete pWindow;
 }

@@ -25,7 +25,7 @@ static const uint32_t AddressTable[][3] =
     { 0x64dd18, 0x61b2f0, 0x64dd18 }
 };
 
-SGExe::SGExe(const std::string& Name, ExePublisher Version, uint8_t CharWidth) :
+SGExe::SGExe(const string& Name, ExePublisher Version, uint8_t CharWidth) :
 ExeFile(Name, CharWidth),
 Version(Version)
 {

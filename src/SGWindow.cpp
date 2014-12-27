@@ -18,13 +18,11 @@
 #include "SGWindow.hpp"
 #include "SGInterpreter.hpp"
 
-SGWindow::SGWindow(ExePublisher Version) : Window("FGRE: Steins;Gate", 1024, 576)
+SGWindow::SGWindow() : Window("FGRE: Steins;Gate", 1024, 576)
 {
-    pInterpreter = new SGInterpreter(this, Version);
-    pInterpreter->ExecuteLocalScript("test.nss");
 }
 
-SGWindow::~SGWindow()
+void SGWindow::SetInterpreter(SGInterpreter* pInterpreter)
 {
-    delete pInterpreter;
+    this->pInterpreter = pInterpreter;
 }

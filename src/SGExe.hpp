@@ -26,8 +26,7 @@ enum ExePublisher
 {
     EXE_NITROPLUS,
     EXE_JAST,
-    EXE_FUWANOVEL,
-    EXE_INVALID
+    EXE_FUWANOVEL
 };
 
 enum
@@ -39,7 +38,7 @@ enum
 class SGExe : private ExeFile
 {
 public:
-    SGExe(const std::string& Name, ExePublisher Version, uint8_t CharWidth);
+    SGExe(const string& Name, ExePublisher Version, uint8_t CharWidth);
 
     string ReadStringIndirect(uint32_t Array, uint32_t ArrayIndex, uint32_t StructSize, uint32_t Offset);
     ExePublisher GetVersion();
