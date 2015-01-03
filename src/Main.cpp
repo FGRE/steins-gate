@@ -18,6 +18,9 @@
 #include "SGWindow.hpp"
 #include "SGExe.hpp"
 #include "SGInterpreter.hpp"
+#include "npaversion.hpp"
+#include "npengineversion.hpp"
+#include "version.hpp"
 #include <iostream>
 #include <boost/program_options.hpp>
 using namespace std;
@@ -30,6 +33,7 @@ int main(int argc, char** argv)
     options_description desc("Options");
     desc.add_options()
         ("help", "Print this message")
+        ("version", "Print version")
         ("exe", value<int>((int*)&Version)->default_value(EXE_NITROPLUS), "Source of STEINSGATE.exe\n    0 - Nitroplus\n    1 - JAST\n    2 - Fuwanovel")
         ("script", value<string>(), "Path to nss script to execute")
         ("debug", value<bool>(&Debug)->default_value(false), "Start script debugger")
@@ -42,6 +46,13 @@ int main(int argc, char** argv)
     if (vm.count("help"))
     {
         cout << desc << "\n";
+        return 1;
+    }
+    if (vm.count("version"))
+    {
+        cout << "libnpa " << NPA_VERSION << endl;
+        cout << "libnpengine "  << NPENGINE_VERSION << endl;
+        cout << "steins-gate " << VERSION << endl;
         return 1;
     }
 
