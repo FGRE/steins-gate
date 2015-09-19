@@ -6,5 +6,5 @@ mv ${1::-3}"map" nss/0_boot.map
 mv nss.npa nss.npa.bak
 ../nptools/npapack nss
 rm -fr nss
-LANG=ja_JP wine STEINSGATE.exe
+LANG=ja_JP.UTF-8 wine STEINSGATE.exe
 mv nss.npa.bak nss.npa
