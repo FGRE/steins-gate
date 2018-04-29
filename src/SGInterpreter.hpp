@@ -27,6 +27,8 @@ class SGInterpreter : public NSBInterpreter
 public:
     SGInterpreter(SGWindow* pWindow, ExePublisher Version);
     ~SGInterpreter();
+
+    string start, close, menu;
 };
 
 #endif

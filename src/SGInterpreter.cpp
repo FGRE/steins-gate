@@ -19,6 +19,8 @@
 #include "SGResourceMgr.hpp"
 #include "SGWindow.hpp"
 #include "npafile.hpp"
+#include <boost/property_tree/ini_parser.hpp>
+using namespace boost;
 
 SGInterpreter::SGInterpreter(SGWindow* pWindow, ExePublisher Version) : NSBInterpreter(pWindow)
 {
@@ -43,14 +45,36 @@ SGInterpreter::SGInterpreter(SGWindow* pWindow, ExePublisher Version) : NSBInter
 
     SetString("#SYSTEM_save_path", ".");
 
-    // TODO: read these from system.npa ini file
-    SetString("#SYSTEM_version", "1.20");
-    SetInt("#SYSTEM_sound_volume_bgm", 600);
-    SetInt("#SYSTEM_sound_volume_bgm_default", 600);
-    SetInt("#SYSTEM_sound_volume_se", 800);
-    SetInt("#SYSTEM_sound_volume_se_default", 800);
-    SetInt("#SYSTEM_sound_volume_voice", 800);
-    SetInt("#SYSTEM_sound_volume_voice_default", 800);
+    uint32_t Size;
+    char* pData = sResourceMgr->Read("system/system.ini", Size);
+    assert(pData);
+
+    string ini = NpaFile::ToUtf8(pData, Size);
+    istringstream iss(ini);
+    property_tree::ptree tree;
+    property_tree::ini_parser::read_ini(iss, tree);
+
+    string bland = tree.get<string>("プロダクト.bland");
+    string name = tree.get<string>("プロダクト.name");
+    string version = tree.get<string>("プロダクト.version");
+
+    start = tree.get<string>("スクリプト.start");
+    close = tree.get<string>("スクリプト.close");
+    menu = tree.get<string>("スクリプト.menu");
+
+    uint32_t bgm = tree.get<uint32_t>("サウンド.bgm_volume");
+    uint32_t se = tree.get<uint32_t>("サウンド.bgm_volume");
+    uint32_t voice = tree.get<uint32_t>("サウンド.bgm_volume");
+
+    SetString("#SYSTEM_version", version);
+    SetInt("#SYSTEM_sound_volume_bgm", bgm);
+    SetInt("#SYSTEM_sound_volume_bgm_default", bgm);
+    SetInt("#SYSTEM_sound_volume_se", se);
+    SetInt("#SYSTEM_sound_volume_se_default", se);
+    SetInt("#SYSTEM_sound_volume_voice", voice);
+    SetInt("#SYSTEM_sound_volume_voice_default", voice);
+
+    delete pData;
 }
 
 SGInterpreter::~SGInterpreter()

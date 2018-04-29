@@ -62,7 +62,7 @@ int main(int argc, char** argv)
     if (vm.count("script"))
         pInterpreter->ExecuteLocalScript(vm["script"].as<string>());
     else
-        pInterpreter->ExecuteScript("nss/0_boot.nss");
+        pInterpreter->ExecuteScript(pInterpreter->start);
 
     if (Debug)
         pInterpreter->StartDebugger();

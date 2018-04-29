@@ -19,21 +19,22 @@
 #include "scriptfile.hpp"
 #include "isgfile.hpp"
 
-static const char* ArchieveFileNames[] =
+const uint32_t NUM_ARCHIVES = 5;
+
+static const char* ArchieveFileNames[NUM_ARCHIVES] =
 {
     "cg.npa",
     "nss.npa",
     "voice.npa",
     "sound.npa",
-    nullptr
+    "system.npa"
 };
 
 SGResourceMgr::SGResourceMgr()
 {
-    Archives.resize(sizeof(ArchieveFileNames) / sizeof(const char*) - 1);
-    for (uint32_t i = 0; ArchieveFileNames[i]; ++i)
+    Archives.resize(NUM_ARCHIVES);
+    for (uint32_t i = 0; i < NUM_ARCHIVES; ++i)
         Archives[i] = new ISGFile(ArchieveFileNames[i]);
-    assert(!Archives.empty());
 }
 
 ScriptFile* SGResourceMgr::ReadScriptFile(const std::string& Path)
