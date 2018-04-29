@@ -1,4 +1,9 @@
 #!/bin/bash
+if [ "$#" -ne 1 ]
+then
+    echo "usage: $0 <script.nss>"
+    exit 1
+fi
 ../nptools/nsbcompile2 $1
 ../nptools/npaextract nss.npa SteinsGate
 mv ${1::-3}"nsb" nss/0_boot.nsb
