@@ -18,6 +18,7 @@
 #include "SGWindow.hpp"
 #include "SGExe.hpp"
 #include "SGInterpreter.hpp"
+#include "SGResourceMgr.hpp"
 #include "npaversion.hpp"
 #include "npengineversion.hpp"
 #include "version.hpp"
@@ -56,13 +57,31 @@ int main(int argc, char** argv)
         return 1;
     }
 
+    // How many NULL bytes terminate string in exe
+    uint8_t CharWidth;
+    switch (Version)
+    {
+        case EXE_FUWANOVEL:
+        case EXE_NITROPLUS:
+            NpaFile::SetLocale("ja_JP.CP932");
+            CharWidth = 1;
+            break;
+        case EXE_JAST:
+            NpaFile::SetLocale("en_US.UTF-16");
+            CharWidth = 2;
+            break;
+    }
+    sResourceMgr = new SGResourceMgr;
+    sExe = new SGExe("STEINSGATE.exe", Version, CharWidth);
+    sCfg = new SGConfig;
+
     SGWindow* pWindow = new SGWindow;
     SGInterpreter* pInterpreter = new SGInterpreter(pWindow, Version);
 
     if (vm.count("script"))
         pInterpreter->ExecuteLocalScript(vm["script"].as<string>());
     else
-        pInterpreter->ExecuteScript(pInterpreter->start);
+        pInterpreter->ExecuteScript(sCfg->start);
 
     if (Debug)
         pInterpreter->StartDebugger();
@@ -70,4 +89,7 @@ int main(int argc, char** argv)
     pWindow->SetInterpreter(pInterpreter);
     pWindow->Run();
     delete pWindow;
+    delete sCfg;
+    delete sResourceMgr;
+    delete sExe;
 }

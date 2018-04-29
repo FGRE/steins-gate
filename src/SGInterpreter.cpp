@@ -22,29 +22,10 @@
 #include <boost/property_tree/ini_parser.hpp>
 using namespace boost;
 
-SGInterpreter::SGInterpreter(SGWindow* pWindow, ExePublisher Version) : NSBInterpreter(pWindow)
+SGConfig* sCfg;
+
+SGConfig::SGConfig()
 {
-    // How many NULL bytes terminate string in exe
-    uint8_t CharWidth;
-
-    switch (Version)
-    {
-        case EXE_FUWANOVEL:
-        case EXE_NITROPLUS:
-            NpaFile::SetLocale("ja_JP.CP932");
-            CharWidth = 1;
-            break;
-        case EXE_JAST:
-            NpaFile::SetLocale("en_US.UTF-16");
-            CharWidth = 2;
-            break;
-    }
-
-    sResourceMgr = new SGResourceMgr;
-    sExe = new SGExe("STEINSGATE.exe", Version, CharWidth);
-
-    SetString("#SYSTEM_save_path", ".");
-
     uint32_t Size;
     char* pData = sResourceMgr->Read("system/system.ini", Size);
     assert(pData);
@@ -54,31 +35,62 @@ SGInterpreter::SGInterpreter(SGWindow* pWindow, ExePublisher Version) : NSBInter
     property_tree::ptree tree;
     property_tree::ini_parser::read_ini(iss, tree);
 
-    string bland = tree.get<string>("プロダクト.bland");
-    string name = tree.get<string>("プロダクト.name");
-    string version = tree.get<string>("プロダクト.version");
+    bland = tree.get<string>("プロダクト.bland");
+    name = tree.get<string>("プロダクト.name");
+    version = tree.get<string>("プロダクト.version");
 
     start = tree.get<string>("スクリプト.start");
     close = tree.get<string>("スクリプト.close");
     menu = tree.get<string>("スクリプト.menu");
 
-    uint32_t bgm = tree.get<uint32_t>("サウンド.bgm_volume");
-    uint32_t se = tree.get<uint32_t>("サウンド.bgm_volume");
-    uint32_t voice = tree.get<uint32_t>("サウンド.bgm_volume");
+    title = tree.get<string>("ウィンドウ.title");
+    debug = tree.get<int32_t>("ウィンドウ.debug");
 
-    SetString("#SYSTEM_version", version);
-    SetInt("#SYSTEM_sound_volume_bgm", bgm);
-    SetInt("#SYSTEM_sound_volume_bgm_default", bgm);
-    SetInt("#SYSTEM_sound_volume_se", se);
-    SetInt("#SYSTEM_sound_volume_se_default", se);
-    SetInt("#SYSTEM_sound_volume_voice", voice);
-    SetInt("#SYSTEM_sound_volume_voice_default", voice);
+    font_face = tree.get<string>("フォント.face");
+    font_size = tree.get<uint32_t>("フォント.size");
+    font_weight = tree.get<uint32_t>("フォント.weight");
+    font_inline = tree.get<string>("フォント.inline");
+    font_outline = tree.get<string>("フォント.outline");
+    font_margin_line = tree.get<uint32_t>("フォント.margin_line");
+    font_margin_low = tree.get<uint32_t>("フォント.margin_low");
+
+    bad_start = tree.get<string>("テキスト.bad_start");
+    bad_end = tree.get<string>("テキスト.bad_end");
+    ruby_rate = tree.get<uint32_t>("テキスト.ruby_rate");
+
+    bgm_volume = tree.get<uint32_t>("サウンド.bgm_volume");
+    se_volume = tree.get<uint32_t>("サウンド.bgm_volume");
+    voice_volume = tree.get<uint32_t>("サウンド.bgm_volume");
+
+    icon_line = tree.get<string>("アイコン.icon_line");
+    icon_page = tree.get<string>("アイコン.icon_page");
+    icon_auto = tree.get<string>("アイコン.icon_auto");
+
+    script = tree.get<string>("バックログ.script");
+    icon_voice = tree.get<string>("バックログ.icon_voice");
+    word_in_row = tree.get<uint32_t>("バックログ.word_in_row");
+
+    enable = tree.get<string>("セーブ.enable");
+
+    all_name = tree.get<string>("ボイス.all_name");
+
+    compiler = tree.get<string>("コンパイラ.compiler");
 
     delete pData;
 }
 
+SGInterpreter::SGInterpreter(SGWindow* pWindow, ExePublisher Version) : NSBInterpreter(pWindow)
+{
+    SetString("#SYSTEM_save_path", ".");
+    SetString("#SYSTEM_version", sCfg->version);
+    SetInt("#SYSTEM_sound_volume_bgm", sCfg->bgm_volume);
+    SetInt("#SYSTEM_sound_volume_bgm_default", sCfg->bgm_volume);
+    SetInt("#SYSTEM_sound_volume_se", sCfg->se_volume);
+    SetInt("#SYSTEM_sound_volume_se_default", sCfg->se_volume);
+    SetInt("#SYSTEM_sound_volume_voice", sCfg->voice_volume);
+    SetInt("#SYSTEM_sound_volume_voice_default", sCfg->voice_volume);
+}
+
 SGInterpreter::~SGInterpreter()
 {
-    delete sExe;
-    delete sResourceMgr;
 }

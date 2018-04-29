@@ -18,7 +18,7 @@
 #include "SGWindow.hpp"
 #include "SGInterpreter.hpp"
 
-SGWindow::SGWindow() : Window("FGRE: Steins;Gate", 1024, 576)
+SGWindow::SGWindow() : Window(sCfg->title.c_str(), 1024, 576)
 {
 }
 

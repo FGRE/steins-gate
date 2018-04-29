@@ -22,13 +22,58 @@
 #include "SGExe.hpp"
 
 class SGWindow;
+
+struct SGConfig
+{
+    SGConfig();
+
+    // プロダクト
+    string bland, name, version;
+
+    // スクリプト
+    string start, close, menu;
+
+    // ウィンドウ
+    string title;
+    int32_t debug;
+
+    // フォント
+    string font_face;
+    uint32_t font_size, font_weight;
+    string font_inline, font_outline;
+    uint32_t font_margin_line, font_margin_low;
+
+    // テキスト
+    string bad_start, bad_end;
+    uint32_t ruby_rate;
+
+    // サウンド
+    uint32_t bgm_volume, se_volume, voice_volume;
+
+    // アイコン
+    string icon_line, icon_page, icon_auto;
+
+    // バックログ
+    string script, icon_voice;
+    uint32_t word_in_row;
+
+    // セーブ
+    string enable;
+
+    // ボイス
+    string all_name;
+
+    // コンパイラ
+    string compiler;
+};
+
+extern SGConfig* sCfg;
+
 class SGInterpreter : public NSBInterpreter
 {
 public:
     SGInterpreter(SGWindow* pWindow, ExePublisher Version);
     ~SGInterpreter();
-
-    string start, close, menu;
 };
 
 #endif
