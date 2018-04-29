@@ -41,8 +41,16 @@ SGInterpreter::SGInterpreter(SGWindow* pWindow, ExePublisher Version) : NSBInter
     sResourceMgr = new SGResourceMgr;
     sExe = new SGExe("STEINSGATE.exe", Version, CharWidth);
 
-    // Hack
-    SetVar("#SYSTEM_save_path", Variable::MakeString("."));
+    SetString("#SYSTEM_save_path", ".");
+
+    // TODO: read these from system.npa ini file
+    SetString("#SYSTEM_version", "1.20");
+    SetInt("#SYSTEM_sound_volume_bgm", 600);
+    SetInt("#SYSTEM_sound_volume_bgm_default", 600);
+    SetInt("#SYSTEM_sound_volume_se", 800);
+    SetInt("#SYSTEM_sound_volume_se_default", 800);
+    SetInt("#SYSTEM_sound_volume_voice", 800);
+    SetInt("#SYSTEM_sound_volume_voice_default", 800);
 }
 
 SGInterpreter::~SGInterpreter()
