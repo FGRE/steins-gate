@@ -30,7 +30,7 @@ PhoneModeReceivingMail::PhoneModeReceivingMail(Phone* pPhone) : PhoneMode(pPhone
 
     // TODO: position and size are a guess
     RecMailText.SetPosition(780 + 28, 150 + 18);
-    //RecMailText.SetCharacterSize(20);
+    RecMailText.SetCharacterSize(20);
     RecMailText.CreateFromString(RecMailStr);
     UpdateAnim();
 }

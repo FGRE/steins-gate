@@ -26,7 +26,7 @@ PhoneModeSendMailEdit::PhoneModeSendMailEdit(Phone* pPhone) : PhoneMode(pPhone)
     for (int i = 0; i < 3; ++i)
     {
         MailText[i].SetPosition(729.0f, 144.0f + i * 17);
-        //MailText[i].SetCharacterSize(17);
+        MailText[i].SetCharacterSize(17);
         MailText[i].SetColor(Nsb::Color::BLACK);
     }
 }

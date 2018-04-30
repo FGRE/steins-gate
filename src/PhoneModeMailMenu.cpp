@@ -38,7 +38,7 @@ MailMenuHighlight(0)
     for (int i = 0; i < 2; ++i)
     {
         MailMenuText[i].SetPosition(MAIL_MENU_TEXT_POS_X, 170 + i * 20);
-        //MailMenuText[i].SetCharacterSize(20);
+        MailMenuText[i].SetCharacterSize(20);
         MailMenuText[i].SetColor(Nsb::Color::BLACK);
         MailMenuText[i].CreateFromString(HeaderString[i + 1]);
     }
@@ -67,7 +67,7 @@ void PhoneModeMailMenu::Draw(uint32_t Diff)
 
 void PhoneModeMailMenu::MouseMoved(int x, int y)
 {
-    //if (x > MAIL_MENU_TEXT_POS_X && x < MAIL_MENU_TEXT_POS_X + MailMenuText[0].getLocalBounds().width)
+    if (x > MAIL_MENU_TEXT_POS_X && x < MAIL_MENU_TEXT_POS_X + MailMenuText[0].GetWidth())
     {
         int i = (y - 170) / 20;
         if (i >= 0 && i < 2 && i != MailMenuHighlight)

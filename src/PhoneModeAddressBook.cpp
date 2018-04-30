@@ -32,7 +32,7 @@ AddressMask(0)
     Mask.CreateFromImage(&pPhone->pPhoneTex);
     Mask.SetPosition(PHONE_WALLPAPER_X, PHONE_WALLPAPER_Y);
     HeaderText.SetPosition(BLUE_HEADER_POS_X + 24, BLUE_HEADER_POS_Y);
-    //HeaderText.SetCharacterSize(20);
+    HeaderText.SetCharacterSize(20);
 }
 
 PhoneModeAddressBook::~PhoneModeAddressBook()
@@ -96,7 +96,8 @@ void PhoneModeAddressBook::AddContact(uint8_t Index)
     Text ContactText;
     ContactText.SetPosition(PHONE_WALLPAPER_X, BLUE_HEADER_POS_Y + BLUE_HEADER_HEIGHT + Contacts.size() * 20);
     ContactText.SetColor(Nsb::Color::BLACK);
-    ContactText.CreateFromString(Name); /* TODO: size 20 */
+    ContactText.SetCharacterSize(20);
+    ContactText.CreateFromString(Name);
     Contacts.push_back({ ContactText, Index });
     this->AddressMask |= AddressMask;
 }
