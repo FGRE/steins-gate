@@ -1,6 +1,6 @@
 /*
  * steins-gate: Open source implementation of Steins;Gate Visual Novel
- * Copyright (C) 2014-2016 Mislav Blažević <krofnica996@gmail.com>
+ * Copyright (C) 2014 Mislav Blažević <krofnica996@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,29 +15,33 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * */
-#include "SGExe.hpp"
+#ifndef PHONE_SD_HPP
+#define PHONE_SD_HPP
 
-SGExe* sExe;
+#include <string>
+#include "Texture.hpp"
+#include "Image.hpp"
+using std::string;
 
-static const uint32_t AddressTable[][3] =
+namespace sf { class RenderWindow; class Texture; }
+class Phone;
+
+class PhoneSD
 {
-    { 0x643d68, 0x63d338, 0x643d68 },
-    { 0x64dd18, 0x61b2f0, 0x64dd18 }
+    friend class Phone;
+private:
+    PhoneSD();
+    ~PhoneSD();
+
+    void Draw(uint32_t Diff);
+    void SetDate(string Date);
+
+    int DateToWeekDay(string Date);
+
+    Texture SD;
+    Texture SDDate[6];
+    Texture SDIcon[4];
+    Image pSDTex;
 };
 
-SGExe::SGExe(const string& Name, ExePublisher Version, uint8_t CharWidth) :
-ExeFile(Name, CharWidth),
-Version(Version)
-{
-}
-
-string SGExe::ReadStringIndirect(uint32_t Array, uint32_t ArrayIndex, uint32_t StructSize, uint32_t Offset)
-{
-    uint32_t Address = ArrayIndex * StructSize + AddressTable[Array][Version];
-    return Read<string>(Read<uint32_t>(Address + Offset));
-}
-
-ExePublisher SGExe::GetVersion()
-{
-    return Version;
-}
+#endif

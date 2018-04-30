@@ -57,6 +57,13 @@ add_executable(steins-gate
     src/SGWindow.cpp
     src/SGInterpreter.cpp
     src/SGResourceMgr.cpp
+    src/Phone.cpp
+    src/PhoneModeAddressBook.cpp
+    src/PhoneModeDefaultOperatable.cpp
+    src/PhoneModeMailMenu.cpp
+    src/PhoneModeSendMailEdit.cpp
+    src/PhoneModeReceivingMail.cpp
+    src/PhoneSD.cpp
 )
 target_link_libraries(steins-gate
     ${Boost_LIBRARIES}
