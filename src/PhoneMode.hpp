@@ -1,6 +1,6 @@
 /* 
  * steins-gate: Open source implementation of Steins;Gate Visual Novel
- * Copyright (C) 2014 Mislav Blažević <krofnica996@gmail.com>
+ * Copyright (C) 2014,2018 Mislav Blažević <krofnica996@gmail.com>
  * 
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
