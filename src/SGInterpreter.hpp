@@ -82,7 +82,7 @@ public:
     void MouseMoved(int x, int y);
     void MouseClicked(const SDL_Event& Event);
 
-    virtual void OnVariableChanged(const string& Identifier);
+    virtual void OnVariableChanged(const string& Name);
 
 private:
     void WriteHack(const char* ScriptName, uint32_t LineNumber, uint16_t NewMagic);

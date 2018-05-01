@@ -149,22 +149,23 @@ void SGInterpreter::WriteHack(const char* ScriptName, uint32_t LineNumber, uint1
     sResourceMgr->GetScriptFile(ScriptName)->GetLine(LineNumber)->Magic = NewMagic;
 }
 
-void SGInterpreter::OnVariableChanged(const string& Identifier)
+void SGInterpreter::OnVariableChanged(const string& Name)
 {
+    NSBInterpreter::OnVariableChanged(Name);
     // Handle hardcoded phone operations
-    if (Identifier == "$SF_Phone_Open")
+    if (Name == "$SF_Phone_Open")
         SGPhoneOpen();
-    else if (Identifier == "$SW_PHONE_MODE")
+    else if (Name == "$SW_PHONE_MODE")
         SGPhoneMode();
-    else if (Identifier == "$SF_PhoneMailReciveNew")
+    else if (Name == "$SF_PhoneMailReciveNew")
         pPhone->MailReceive(GetInt("$SF_PhoneMailReciveNew"));
-    else if (Identifier == "$SF_PhoneSD_Disp")
+    else if (Name == "$SF_PhoneSD_Disp")
         pPhone->SDDisplay(GetInt("$SF_PhoneSD_Disp"));
-    else if (Identifier == "$LR_DATE")
+    else if (Name == "$LR_DATE")
         pPhone->SetDate(GetInt("$LR_DATE"));
-    else if (Identifier == "$SW_PHONE_PRI")
+    else if (Name == "$SW_PHONE_PRI")
         SGPhonePriority();
-    else if (Identifier == "$SW_PHONE_ADRMENUCUR")
+    else if (Name == "$SW_PHONE_ADRMENUCUR")
         PhoneAddressMenuHighlight();
 }
 
