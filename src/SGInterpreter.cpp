@@ -79,7 +79,7 @@ SGConfig::SGConfig()
 
     compiler = tree.get<string>("コンパイラ.compiler");
 
-    delete pData;
+    delete[] pData;
 }
 
 SGInterpreter::SGInterpreter(SGWindow* pWindow) : NSBInterpreter(pWindow)
