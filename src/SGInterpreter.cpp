@@ -22,6 +22,7 @@
 #include "nsbmagic.hpp"
 #include "nsbconstants.hpp"
 #include "scriptfile.hpp"
+#include "NSBContext.hpp"
 #include <boost/property_tree/ini_parser.hpp>
 using namespace boost;
 
@@ -99,7 +100,7 @@ SGInterpreter::SGInterpreter(SGWindow* pWindow) : NSBInterpreter(pWindow)
     Builtins[MAGIC_UNK101] = { (void(NSBInterpreter::*)())&SGInterpreter::UNK101, 1 };
     Builtins[MAGIC_UNK143] = { (void(NSBInterpreter::*)())&SGInterpreter::UNK143, 1 };
 
-    pPhone = new Phone(pWindow);
+    pWindow->AddTexture(pPhone = new Phone(pWindow));
 }
 
 SGInterpreter::~SGInterpreter()
@@ -154,7 +155,10 @@ void SGInterpreter::OnVariableChanged(const string& Name)
     NSBInterpreter::OnVariableChanged(Name);
     // Handle hardcoded phone operations
     if (Name == "$SF_Phone_Open")
-        SGPhoneOpen();
+    {
+        pPhone->Toggle(GetInt("$SF_Phone_Open") != 0);
+        pContext->WaitAction(pPhone, -1);
+    }
     else if (Name == "$SW_PHONE_MODE")
         SGPhoneMode();
     else if (Name == "$SF_PhoneMailReciveNew")
@@ -178,18 +182,12 @@ void SGInterpreter::PhoneAddressMenuHighlight()
 
 void SGInterpreter::PhoneToggle()
 {
-    if (GetInt("$SF_Phone_Open") == 1)
-        SetInt("$SF_Phone_Open", 0);
-    else
-        SetInt("$SF_Phone_Open", 1);
-    SGPhoneOpen();
-}
-
-void SGInterpreter::SGPhoneOpen()
-{
-    pPhone->UpdateOpenMode(GetInt("$SF_Phone_Open"));
-    pWindow->RemoveTexture(pPhone);
-    pWindow->AddTexture(pPhone);
+    bool Open = GetInt("$SF_Phone_Open") != 0;
+    if (pPhone->Toggle(!Open))
+    {
+        SetInt("$SF_Phone_Open", !Open);
+        pContext->WaitAction(pPhone, -1);
+    }
 }
 
 void SGInterpreter::SGPhonePriority()

@@ -82,16 +82,20 @@ public:
     {
         Restart();
     }
+    void Update(int Diff)
+    {
+        Time += Diff;
+    }
     int GetElapsedTime()
     {
-        return SDL_GetTicks() - Start;
+        return Time;
     }
     void Restart()
     {
-        Start = SDL_GetTicks();
+        Time = 0;
     }
 private:
-    int Start;
+    int Time;
 };
 
 class SGInterpreter;
@@ -114,7 +118,7 @@ public:
     void SetDate(int32_t Date);
     void SDDisplay(int32_t Show);
     void MailReceive(int32_t Show);
-    void UpdateOpenMode(int32_t OpenMode);
+    bool Toggle(int Open);
     void UpdateMode(uint8_t NewMode);
     void MouseMoved(int x, int y);
     void LeftMouseClicked(int x, int y);
@@ -124,6 +128,7 @@ public:
     void AddressbookReset(uint8_t Index);
     void AddressMenuHighlight(int32_t Index);
     void PhoneSendMailEdit(const string& Subject, const string& Sender, const string& Body);
+    bool Action() override;
 
 private:
     void UpdateAnim();

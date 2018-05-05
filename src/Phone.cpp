@@ -71,7 +71,9 @@ ShowSD(false),
 MailReceived(false),
 Mode(PHONE_MODE_POWER_OFF),
 pMode(nullptr),
-OverlayAnimProgress(0)
+OverlayAnimProgress(0),
+AnimColumn(PHONE_ANIM_COLUMN_MAX),
+AnimRow(PHONE_ANIM_ROW_MAX)
 {
     pWallpaper.LoadImage("cg/sys/phone/pwcg101.png");
     pPhoneTex.LoadImage("cg/sys/phone/phone_01.png");
@@ -105,20 +107,24 @@ Phone::~Phone()
     delete pSD;
 }
 
-void Phone::UpdateOpenMode(int32_t OpenMode)
+bool Phone::Toggle(int Open)
 {
+    // Currently opening/closing or already desired state
     if (!(State == PHONE_OPEN || State == PHONE_CLOSED))
-        return;
+        return false;
 
     CreateFromImage(&pPhoneOpenTex);
-    State = OpenMode;
+    State = Open;
     UpdateAnim();
     AnimClock.Restart();
+    return true;
 }
 
 void Phone::Draw(uint32_t Diff)
 {
     // Update
+    AnimClock.Update(Diff);
+    OverlayClock.Update(Diff);
     if (!(AnimClock.GetElapsedTime() < PHONE_ANIM_SPEED
         || State == PHONE_OPEN || State == PHONE_CLOSED))
     {
@@ -170,7 +176,6 @@ void Phone::UpdateAnim()
     else if (State == PHONE_CLOSING_DONE)
     {
         CreateEmpty(0, 0);
-        SetPosition(PHONE_POS_X, PHONE_POS_Y);
         State = PHONE_CLOSED;
         return;
     }
@@ -324,4 +329,10 @@ void Phone::AddressbookReset(uint8_t Index)
 {
     PhoneModeAddressBook* pMode = (PhoneModeAddressBook*)PhoneModes[PHONE_MODE_ADDRESS_BOOK];
     pMode->DelContact(Index);
+}
+
+// [HACK]
+bool Phone::Action()
+{
+    return State == PHONE_OPEN || State == PHONE_CLOSED;
 }

@@ -45,6 +45,7 @@ void PhoneModeReceivingMail::OnOpen(uint8_t OldMode)
 
 void PhoneModeReceivingMail::Draw(uint32_t Diff)
 {
+    AnimClock.Update(Diff);
     if (AnimClock.GetElapsedTime() > 100)
         UpdateAnim();
 
