@@ -2,7 +2,11 @@ chapter main
 {
     /* Must be set before opening the phone */
     $SW_PHONE_MODE = "PhoneMode_PowerOff";
+    WaitKey();
     /* Opens the phone */
+    $SF_Phone_Open = 1;
+    /* This is a blocking operation */
+    $SF_Phone_Open = 0;
     $SF_Phone_Open = 1;
     WaitKey();
 
