@@ -5,7 +5,10 @@ then
     exit 1
 fi
 ../nptools/nsbcompile2 $1
+../nptools/nsbcompile2 "tests/libtest.nss"
 ../nptools/npaextract nss.npa SteinsGate
+mv tests/libtest.nsb nss/
+mv tests/libtest.map nss/
 mv ${1::-3}"nsb" nss/0_boot.nsb
 mv ${1::-3}"map" nss/0_boot.map
 mv nss.npa nss.npa.bak

@@ -1,10 +1,6 @@
 /* void CreateChoice(Handle) */
-function Print($str)
-{
-    $txt = ReadFile("debug.out");
-    $out = $txt + $str + "\n";
-    WriteFile("debug.out", $out);
-}
+
+#include "nss/libtest.nss"
 
 function CreateTex($handle, $sub, $pr, $x, $y, $img)
 {
