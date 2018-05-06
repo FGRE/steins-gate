@@ -1,7 +1,7 @@
 #!/bin/bash
-if [ "$#" -ne 1 ]
+if [ "$#" -ne 2 ]
 then
-    echo "usage: $0 <script.nss>"
+    echo "usage: $0 <script.nss> [0=fgre | 1=nitroplus]"
     exit 1
 fi
 ../nptools/nsbcompile2 $1
@@ -16,7 +16,12 @@ mv nss.npa nss.npa.bak
 rm -fr nss
 echo "TEST OUTPUT:" >> debug.out
 ../nptools/npcrypt "debug.out" "debug.out"
-LANG=ja_JP.UTF-8 wine STEINSGATE.exe
+if [ "$2" -eq 1 ]
+then
+    LANG=ja_JP.UTF-8 wine STEINSGATE.exe
+else
+    ./steins-gate --script="$1"
+fi
 mv nss.npa.bak nss.npa
 ../nptools/npcrypt "debug.out" "debug.out"
 cat debug.out

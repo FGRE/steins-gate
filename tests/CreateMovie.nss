@@ -4,11 +4,12 @@
 
 chapter main
 {
-    WaitKey();
     CreateMovie("movie", 0, 0, 0, "true", "false", "dx/demo.ngs", "true");
+    WaitKey();
     /* Doesn't autoplay */
     Request("movie", "Play");
     WaitKey();
     Print(PassageTime("movie"));
+    Delete("movie");
     Exit();
 }
