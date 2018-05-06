@@ -11,7 +11,5 @@ chapter main
     WaitKey();
     SetTone("texture", "KitanoBlue");
     WaitKey();
-    Delete("texture");
-    WaitKey();
     Exit();
 }
