@@ -4,6 +4,7 @@
 
 chapter main
 {
+    #GameLoading = "SteinsGate";
     StArray();
     PosSt("STBUF5", 294, @0);
     St("STBUF5", 1800, @0, @0, "MAY_AMB02");
