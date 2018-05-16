@@ -94,7 +94,6 @@ SGInterpreter::SGInterpreter(SGWindow* pWindow) : NSBInterpreter(pWindow)
     SetInt("#SYSTEM_sound_volume_voice", sCfg->voice_volume);
     SetInt("#SYSTEM_sound_volume_voice_default", sCfg->voice_volume);
 
-    // Old
     Builtins[MAGIC_ALLOW_PHONE_CALL] = { (void(NSBInterpreter::*)())&SGInterpreter::AllowPhoneCall, 4};
     Builtins[MAGIC_SEND_MAIL_EDIT] = { (void(NSBInterpreter::*)())&SGInterpreter::SendMailEdit, 0};
     Builtins[MAGIC_UNK101] = { (void(NSBInterpreter::*)())&SGInterpreter::UNK101, 1 };
@@ -171,6 +170,10 @@ void SGInterpreter::OnVariableChanged(const string& Name)
         SGPhonePriority();
     else if (Name == "$SW_PHONE_ADRMENUCUR")
         PhoneAddressMenuHighlight();
+
+    // Hack
+    if (Name == "#SYSTEM_skip_absolute")
+        GetVar(Name)->Set(Variable::MakeString("true"));
 }
 
 void SGInterpreter::PhoneAddressMenuHighlight()
