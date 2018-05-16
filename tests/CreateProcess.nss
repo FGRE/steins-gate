@@ -19,6 +19,7 @@ function TestRequest()
     WaitKey();
     Request("proc1", "Resume");
     WaitKey();
+    /* Deleting a process seems to delete all objects it created */
     Delete("proc1");
 }
 
@@ -38,6 +39,7 @@ function TestExecOrder()
     CreateProcess("proc2", 0, 0, 0, "Bar");
     $tm = Time();
     Request("proc2", "Start");
+    /* Each thread gets a tick */
     while (Time() - $tm < 2)
     {
         Print("foo");
