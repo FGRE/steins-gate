@@ -91,6 +91,7 @@ private:
     void AllowPhoneCall();
     void UNK101();
     void UNK143();
+    void UNK128();
 
     void PhoneToggle();
     void PhoneAddressMenuHighlight();

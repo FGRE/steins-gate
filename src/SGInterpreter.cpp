@@ -98,6 +98,7 @@ SGInterpreter::SGInterpreter(SGWindow* pWindow) : NSBInterpreter(pWindow)
     Builtins[MAGIC_SEND_MAIL_EDIT] = { (void(NSBInterpreter::*)())&SGInterpreter::SendMailEdit, 0};
     Builtins[MAGIC_UNK101] = { (void(NSBInterpreter::*)())&SGInterpreter::UNK101, 1 };
     Builtins[MAGIC_UNK143] = { (void(NSBInterpreter::*)())&SGInterpreter::UNK143, 1 };
+    Builtins[MAGIC_UNK128] = { (void(NSBInterpreter::*)())&SGInterpreter::UNK128, 0 };
 
     pWindow->AddTexture(pPhone = new Phone(pWindow));
 }
@@ -233,4 +234,10 @@ void SGInterpreter::UNK101()
 void SGInterpreter::UNK143()
 {
     pPhone->AddressbookReset(PopInt());
+}
+
+void SGInterpreter::UNK128()
+{
+    // HACK
+    Return();
 }
