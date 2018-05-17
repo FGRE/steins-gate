@@ -113,7 +113,7 @@ void SGInterpreter::HandleEvent(const SDL_Event& Event)
     switch (Event.type)
     {
         case SDL_QUIT:
-            ExecuteScript(sCfg->close);
+            ExecuteScriptThread(sCfg->close);
             break;
         case SDL_MOUSEMOTION:
             MouseMoved(Event.motion.x, Event.motion.y);
