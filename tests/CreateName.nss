@@ -1,3 +1,4 @@
+/* void CreateName(Handle) */
 chapter main
 {
     CreateName("foo");
