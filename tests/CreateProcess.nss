@@ -11,6 +11,7 @@ chapter main
 
 function TestRequest()
 {
+    CreateColor("color", 1, 0, 0, 100, 100, "red");
     CreateProcess("proc1", 0, 0, 0, "Foo");
     WaitKey();
     Request("proc1", "Start");
@@ -25,12 +26,12 @@ function TestRequest()
 
 function Foo()
 {
+    /* However, identifiers do collide */
+    CreateColor("color", 1, Center, Middle, 100, 100, "green");
     while (1)
     {
-        CreateColor("color", 1, 0, 0, 1024, 576, "red");
-        Wait(500);
-        Delete("color");
-        Wait(500);
+        Rotate("color", 2000, 0, 0, 360, null, true);
+        Rotate("color", 2000, 0, 0, 0, null, true);
     }
 }
 
