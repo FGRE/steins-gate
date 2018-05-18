@@ -4,3 +4,8 @@ function Print($str)
     $out = $txt + $str + "\n";
     WriteFile("debug.out", $out);
 }
+
+function PrintInt($int)
+{
+    Print(String("%d", $int));
+}
