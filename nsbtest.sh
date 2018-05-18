@@ -20,7 +20,7 @@ if [ "$2" -eq 1 ]
 then
     LANG=ja_JP.UTF-8 wine STEINSGATE.exe
 else
-    ./steins-gate --script="$1"
+    gdb --args ./steins-gate --script="$1" --debug=1
 fi
 mv nss.npa.bak nss.npa
 ../nptools/npcrypt "debug.out" "debug.out"
