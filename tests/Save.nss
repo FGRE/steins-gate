@@ -6,7 +6,7 @@ chapter main
     AssocArray($b, "zero", "one", "two");
     Array($b[1], "foo", "bar");
     Array($c, 7, 8, 9);
-    AssocArray($b[1], "foo1", "bar1");    
+    AssocArray($b[1], "foo1", "bar1");
     Save(99);
     Exit();
 }
