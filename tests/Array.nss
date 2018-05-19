@@ -29,5 +29,9 @@ chapter main
     PrintInt(Count($a));
     PrintInt($a[9]);
     PrintInt($a[8]);
+    /* $c is both a variable and an array */
+    $c = "foo";
+    Array($c, 4, 5, 6);
+    Print($c + "bar");
     Exit();
 }

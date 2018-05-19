@@ -1,3 +1,6 @@
+/* void Save(Number) */
+#include "nss/libtest.nss"
+
 chapter main
 {
     /* S;G doesn't seem to support floats */
@@ -7,6 +10,8 @@ chapter main
     Array($b[1], "foo", "bar");
     Array($c, 7, 8, 9);
     AssocArray($b[1], "foo1", "bar1");
+    $b = 66;
+    Print($b[1]["bar1"]);
     Save(99);
     Exit();
 }
