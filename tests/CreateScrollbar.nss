@@ -1,4 +1,4 @@
-/* void CreateScrollbar(Handle, Priority, X1, Y1, X2, Y2, unk, Min, Max, unk, unk, Type, Filename, unk) */
+/* void CreateScrollbar(Handle, Priority, X1, Y1, X2, Y2, unk, Min, Max, unk, unk, Type, Filename, Callback) */
 /* void SetScrollbarValue(Handle, Value) */
 /* void SetScrollbarWheelArea(Handle, X, Y, Width, Height) */
 /* int ScrollbarValue(Handle) */

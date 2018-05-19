@@ -9,5 +9,8 @@ chapter main
     Array($a[0], 3, 4, 5);
     PrintInt(Count($a[0]));
     PrintInt($a[0][2]);
+    PrintInt($a/0/1);
+    $a/0/1 = 100;
+    PrintInt($a[0][1]);
     Exit();
 }
