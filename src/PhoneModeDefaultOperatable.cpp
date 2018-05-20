@@ -157,7 +157,8 @@ void PhoneModeDefaultOperatable::HighlightButton(int8_t x, int8_t y)
         return;
 
     // Remove old highlight
-    Button[ButtonHighlightY][ButtonHighlightX].CreateFromImageClip(&pPhone->pPhoneTex, PHONE_BUTTON_TEX_X, PHONE_BUTTON_TEX_Y[(ButtonHighlightY * 2 + ButtonHighlightX) * 2 + 1], PHONE_BUTTON_WIDTH, PHONE_BUTTON_HEIGHT);
+    if (ButtonHighlightY != -1)
+        Button[ButtonHighlightY][ButtonHighlightX].CreateFromImageClip(&pPhone->pPhoneTex, PHONE_BUTTON_TEX_X, PHONE_BUTTON_TEX_Y[(ButtonHighlightY * 2 + ButtonHighlightX) * 2 + 1], PHONE_BUTTON_WIDTH, PHONE_BUTTON_HEIGHT);
 
     // Add new highlight
     ButtonHighlightX = x;
