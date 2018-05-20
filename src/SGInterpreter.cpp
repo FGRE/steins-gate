@@ -209,7 +209,7 @@ void SGInterpreter::SGPhoneMode()
 
 void SGInterpreter::SendMailEdit()
 {
-    int32_t Index = GetInt("$SW_PHONE_SENDMAILNO");
+    int32_t Index = ConstantToValue<PhoneMail>(GetString("$SW_PHONE_SENDMAILNO"));
     string Subject = sExe->ReadStringIndirect(VA_PHONE_MAIL, Index, 0x40, 0x34);
     string Sender = sExe->ReadStringIndirect(VA_PHONE_MAIL, Index, 0x40, 0x38);
     string Body = sExe->ReadStringIndirect(VA_PHONE_MAIL, Index, 0x40, 0x3C);
