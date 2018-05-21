@@ -57,7 +57,7 @@ void PhoneModeSendMailEdit::SetText(const string& Subject, const string& Sender,
 {
     // Fuwanovel has '\n' characters in exe
     if (sExe->GetVersion() != EXE_FUWANOVEL)
-        MailText[2].SetWrap(25);
+        MailText[2].SetWrap(220);
 
     MailText[0].CreateFromString(Sender);
     MailText[1].CreateFromString(Subject);
